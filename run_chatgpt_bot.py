@@ -25,7 +25,7 @@ class ChatGPTBot:
         pygame.mixer.init()
         pygame.mixer.music.load('output.mp3')
         pygame.mixer.music.play()
-        time.sleep(2)  # Add a small delay after speaking
+        time.sleep(len(text)/10)  # Add a small delay after speaking
 
     @staticmethod
     def recognize_speech():
@@ -99,7 +99,7 @@ while True:
     # User response is converted to text
     print("User:", f' {user_response}')
     # Adding short answer to get short response
-    user_question = f'short answer for {user_response}'
+    user_question = f'{user_response}'
     print(user_question)
     bot_response = chatgpt_bot.get_answer(user_question)
     print(bot_response)
