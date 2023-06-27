@@ -3,6 +3,13 @@ import speech_recognition as sr
 from gtts import gTTS
 import pygame
 import time
+import logging
+
+# Configure the logger
+logging.basicConfig(level=logging.INFO)
+
+# Create a logger object
+logger = logging.getLogger()
 
 # Set up your OpenAI API credentials
 openai.api_key = ''
@@ -35,16 +42,16 @@ class ChatGPTBot:
         """
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            print("Listening...")
+            logger.info("Listening...")
             audio = r.listen(source)
         try:
             text = r.recognize_google(audio)
             return text
         except sr.UnknownValueError:
-            print("Sorry, I couldn't understand your speech.")
+            logger.info("Sorry, I couldn't understand your speech.")
             return ""
         except sr.RequestError:
-            print("Sorry, I'm having trouble accessing the speech recognition service.")
+            logger.info("Sorry, I'm having trouble accessing the speech recognition service.")
             return ""
 
     @staticmethod
@@ -94,16 +101,15 @@ while True:
         continue
     elif user_response == 'goodbye':
         chatgpt_bot.speak('goodbye')
-        print('shut down assist bot')
+        logger.info('Shut down ChatGPT Bot')
         break
     # User response is converted to text
-    print("User:", f' {user_response}')
+    logger.info(f'User: {user_response}')
     # Adding short answer to get short response
     user_question = f'{user_response}'
-    print(user_question)
     bot_response = chatgpt_bot.get_answer(user_question)
-    print(bot_response)
-    # Bot response is spoken
+    logger.info(f'ChatGPT Bot: {bot_response}')
+    # ChatGPT Bot response is spoken
     chatgpt_bot.speak(bot_response)
     time.sleep(len(bot_response)/10)
 
