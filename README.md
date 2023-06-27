@@ -13,3 +13,5 @@ How to run it ?
 Example question: what is the capital of France ?
 
 Important ask question only after see Listening...
+
+3. say 'Goodbay' to shut down bot
