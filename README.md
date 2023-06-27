@@ -11,4 +11,5 @@ How to run it ?
 3. run run_chatgpt_bot.py
 
 Example question: what is the capital of France ?
+
 Important ask question only after see Listening...
